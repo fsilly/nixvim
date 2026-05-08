@@ -25,5 +25,7 @@
     ./project.nix
     # ./toggleterm.nix
     ./treesitter.nix
+
+    ./harpoon.nix
   ];
 }

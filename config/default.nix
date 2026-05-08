@@ -50,6 +50,7 @@
     tmux-sessionizer
     # Formatters
     nixfmt
+    harpoon
     # asmfmt
     # astyle
     ruff

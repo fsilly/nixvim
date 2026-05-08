@@ -8,7 +8,7 @@
   };
 
   outputs =
-    { nixvim, flake-parts, ... }@inputs:
+    { self, nixpkgs, nixvim, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -20,6 +20,9 @@
       perSystem =
         { system, ... }:
         let
+          pkgs = import nixpkgs {
+            inherit system;
+          };
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
           nixvimModule = {
@@ -41,6 +44,35 @@
           packages = {
             # Lets you run `nix run .` to start nixvim
             default = nvim;
+          };
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              git
+              just
+              fd
+              ripgrep
+              entr
+              statix
+              deadnix
+              nixd
+              nil
+              alejandra
+
+              # local nixvim build
+              nvim
+            ];
+
+            shellHook = ''
+              echo "Using LOCAL nixvim config"
+
+              export EDITOR="${nvim}/bin/nvim"
+              export VISUAL="${nvim}/bin/nvim"
+
+              alias vim="${nvim}/bin/nvim"
+              alias nvim="${nvim}/bin/nvim"
+
+              echo "nvim => $(which nvim)"
+            '';
           };
         };
     };
