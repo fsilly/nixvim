@@ -16,7 +16,7 @@
     hlsearch = true;
     incsearch = true;
 
-    wrap = false;
+    wrap = true;
 
     splitbelow = true;
     splitright = true;

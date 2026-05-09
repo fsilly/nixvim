@@ -3,27 +3,25 @@
   lib,
   ...
 }: {
-  plugins.harpoon = {
-    enable = true;
+  extraPlugins = [ pkgs.vimPlugins.harpoon2 ];
 
-    enableTelescope = true;
-
-    settings = {
-      settings = {
-        save_on_toggle = true;
-        sync_on_ui_close = true;
-      };
-    };
-  };
+  extraConfigLua = ''
+    require("harpoon").setup({
+      global_settings = {
+        save_on_toggle = true,
+        save_on_change = true,
+      },
+    })
+    require("telescope").load_extension("harpoon")
+  '';
 
   keymaps = [
-    # Add file
     {
       mode = "n";
       key = "<leader>a";
       action = ''
         function()
-          require("harpoon"):list():add()
+          require("harpoon.mark").add_file()
         end
       '';
       options = {
@@ -31,13 +29,12 @@
       };
     }
 
-    # Toggle quick menu
     {
       mode = "n";
-      key = "<leader>hh";
+      key = "<leader>h";
       action = ''
         function()
-          require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+          require("harpoon.ui").toggle_quick_menu()
         end
       '';
       options = {
@@ -45,58 +42,12 @@
       };
     }
 
-    # Harpoon select 1-4
-    {
-      mode = "n";
-      key = "<leader>h1";
-      action = ''
-        function()
-          require("harpoon"):list():select(1)
-        end
-      '';
-      options.desc = "Harpoon file 1";
-    }
-
-    {
-      mode = "n";
-      key = "<leader>h2";
-      action = ''
-        function()
-          require("harpoon"):list():select(2)
-        end
-      '';
-      options.desc = "Harpoon file 2";
-    }
-
-    {
-      mode = "n";
-      key = "<leader>h3";
-      action = ''
-        function()
-          require("harpoon"):list():select(3)
-        end
-      '';
-      options.desc = "Harpoon file 3";
-    }
-
-    {
-      mode = "n";
-      key = "<leader>h4";
-      action = ''
-        function()
-          require("harpoon"):list():select(4)
-        end
-      '';
-      options.desc = "Harpoon file 4";
-    }
-
-    # Previous / next
     {
       mode = "n";
       key = "<leader>hp";
       action = ''
         function()
-          require("harpoon"):list():prev()
+          require("harpoon.ui").nav_prev()
         end
       '';
       options.desc = "Previous harpoon";
@@ -107,13 +58,12 @@
       key = "<leader>hn";
       action = ''
         function()
-          require("harpoon"):list():next()
+          require("harpoon.ui").nav_next()
         end
       '';
       options.desc = "Next harpoon";
     }
 
-    # Telescope harpoon picker
     {
       mode = "n";
       key = "<leader>fh";
