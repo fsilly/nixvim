@@ -3,15 +3,17 @@
     number = true;
     relativenumber = true;
 
-    tabstop = 2;
-    softtabstop = 2;
-    showtabline = 2;
+    tabstop = 4;
+    softtabstop = 4;
+    #showtabline = 2;
     expandtab = true;
 
-    #smartindent = true;
     shiftwidth = 4;
-
+    smartindent = true;
+    autoindent = true;
     breakindent = true;
+    backspace = "indent,eol,start";
+    cindent = false;
 
     hlsearch = true;
     incsearch = true;
@@ -36,6 +38,7 @@
     # swapfile = false;
     # backup = false;
     undofile = true;
+    #iskeyword = ''append("-")'';
 
     # Enable 24-bit colors
     termguicolors = true;
@@ -71,4 +74,13 @@
     # pumheight = 0;
     # colorcolumn = "80"; # Place a column line
   };
+  config.extraConfigLua = ''
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "*",
+      callback = function()
+        vim.opt_local.cinkeys:remove("0#")
+        vim.opt_local.indentkeys:remove("0#")
+      end,
+    })
+  '';
 }
