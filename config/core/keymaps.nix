@@ -38,7 +38,7 @@
         desc = "Quit all";
       };
     }
-    {
+    { # very cool !
       mode = "n";
       key = "<leader>fy";
       action = "<CMD> %y <CR>";
@@ -95,7 +95,7 @@
     }
 
     # Buffer
-    {
+    { # very cool too
       mode = "n";
       key = "<leader>bd";
       action = "<CMD>bdelete<CR>";
@@ -105,7 +105,7 @@
     }
 
     # Move text up and down
-    {
+    { # very cool !!
       mode = "n";
       key = "<A-k>";
       action = "<CMD>m .-2<CR>==";

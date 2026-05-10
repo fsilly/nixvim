@@ -8,8 +8,8 @@
     showtabline = 2;
     expandtab = true;
 
-    smartindent = true;
-    shiftwidth = 2;
+    #smartindent = true;
+    shiftwidth = 4;
 
     breakindent = true;
 
