@@ -9,7 +9,7 @@
   viAlias = true;
   vimAlias = true;
   clipboard = {
-    register = "unnamedplus";
+    #register = "unnamedplus";
     providers = {
       wl-copy.enable = true;
       xclip.enable = true;

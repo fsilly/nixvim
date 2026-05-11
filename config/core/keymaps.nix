@@ -6,14 +6,14 @@
   '';
   keymaps = [
     # Useful keymaps
-    {
-      mode = "v";
-      key = "p";
-      action = "\"_dP";
-      options = {
-        desc = "Paste over currently selected text without yanking it";
-      };
-    }
+    #{
+    #  mode = "v";
+    #  key = "p";
+    #  action = "\"_dP";
+    #  options = {
+    #    desc = "Paste over currently selected text without yanking it";
+    #  };
+    #}
     {
       mode = "n";
       key = "<leader>sr";
@@ -38,10 +38,51 @@
         desc = "Quit all";
       };
     }
+
+    # my own reamps because I hate yanking in pasting with system clipboard overlap it cringes me
+    {
+      mode = ["n" "v"];
+      key = "<leader>y";
+      action = "\"+y";
+      options = {
+        desc = "Yank to system clipboard";
+      };
+    }
+
+    {
+      mode = ["n" "v"];
+      key = "<leader>p";
+      action = "\"+p";
+      options = {
+        desc = "Paste from system clipboard";
+      };
+    }
+
+    {
+      mode = "n";
+      key = "<leader>yy";
+      action = "\"+yy";
+      options = {
+        desc = "Yank line to system clipboard";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>D";
+      action = "\"_dd";
+      options = {
+        desc = "Delete line without affecting registers";
+      };
+    }
+    {
+      mode = "n";
+      key = "<ESC>";
+      action = "<CMD>nohlsearch<CR>";
+    }
     { # very cool !
       mode = "n";
       key = "<leader>fy";
-      action = "<CMD> %y <CR>";
+      action = ''<CMD> "+%y <CR>'';
       options = {
         desc = "Yank file contents";
       };
@@ -49,15 +90,10 @@
     {
       mode = "n";
       key = "<leader>fp";
-      action = "<CMD> %d_<CR>Vp";
+      action = ''<CMD> %d_<CR>V\"+p'';
       options = {
         desc = "Paste file contents";
       };
-    }
-    {
-      mode = "n";
-      key = "<ESC>";
-      action = "<CMD>nohlsearch<CR>";
     }
 
     # Window navigation

@@ -9,9 +9,9 @@
     expandtab = true;
 
     shiftwidth = 4;
-    smartindent = true;
+    #smartindent = true;
     autoindent = true;
-    breakindent = true;
+    #breakindent = true;
     backspace = "indent,eol,start";
     cindent = false;
 
