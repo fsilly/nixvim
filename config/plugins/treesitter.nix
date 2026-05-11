@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   plugins = {
     treesitter-context.enable = false;
@@ -8,7 +8,7 @@
       nixGrammars = true;
       folding.enable = false;
       settings = {
-        indent.enable = true;
+        #indent.enable = true;
         # incremental_selection.enable = true;
         incremental_selection = {
           enable = true;
@@ -20,29 +20,27 @@
           };
         };
       };
-      /*
-        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-          nix
-          bash
-          cmake
-          make
-          python
-          rust
-          c
-          c_sharp
-          cpp
-          regex
-          gitcommit
-          gitignore
-          markdown
-          markdown_inline
-          json
-          lua
-          toml
-          yaml
-          zig
-        ];
-      */
+      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        nix
+        bash
+        cmake
+        make
+        python
+        rust
+        c
+        c_sharp
+        cpp
+        regex
+        gitcommit
+        gitignore
+        markdown
+        markdown_inline
+        json
+        lua
+        toml
+        yaml
+        zig
+      ];
     };
   };
 }

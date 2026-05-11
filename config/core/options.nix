@@ -6,14 +6,14 @@
     tabstop = 4;
     softtabstop = 4;
     #showtabline = 2;
+    shiftwidth = 4;
     expandtab = true;
 
-    shiftwidth = 4;
-    #smartindent = true;
+    smartindent = true;
     autoindent = true;
-    #breakindent = true;
-    backspace = "indent,eol,start";
+    breakindent = true;
     cindent = false;
+    backspace = "indent,eol,start";
 
     hlsearch = true;
     incsearch = true;
