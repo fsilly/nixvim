@@ -25,6 +25,7 @@
     ./project.nix
     # ./toggleterm.nix
     ./treesitter.nix
+    ./highlight-colors.nix
 
     ./harpoon.nix
   ];
